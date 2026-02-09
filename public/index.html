@@ -2,30 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Captionify.ai</title>
+  <title>Captionify.ai – Viral Captions with AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="box">
-    <h1>🔥 Captionify.ai</h1>
-<p>Generate viral captions in seconds with AI.</p>
+  <div class="container">
+    <h1>🚀 Generate Viral Captions with AI</h1>
+    <p class="subtitle">
+      Boost your Instagram, TikTok & YouTube engagement in seconds.
+    </p>
 
-<input id="topic" placeholder="e.g. grow on Instagram" />
+    <div class="card">
+      <input
+        type="text"
+        id="topicInput"
+        placeholder="Enter your topic (e.g. grow on Instagram)"
+      />
+      <button onclick="generateCaption()">Generate Caption</button>
 
-<select id="platform">
-  <option>Instagram</option>
-  <option>TikTok</option>
-  <option>YouTube Shorts</option>
-</select>
+      <div id="result"></div>
+    </div>
 
-<button onclick="generate()">Generate Caption</button>
+    <div class="features">
+      <div>⚡ Instant captions</div>
+      <div>🤖 AI-powered</div>
+      <div>📈 Grow faster</div>
+    </div>
 
-<pre id="result"></pre>
-
-<p style="margin-top:10px; font-size:12px; opacity:.7">
-Free: 3 captions/day · Pro: Unlimited 🚀
-</p>
+    <p class="footer">
+      Free plan · 3 captions/day · Upgrade coming soon 🚀
+    </p>
   </div>
 
   <script src="script.js"></script>
