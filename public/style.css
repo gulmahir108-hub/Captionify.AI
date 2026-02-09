@@ -1,0 +1,36 @@
+body {
+  background: #0f0f0f;
+  color: white;
+  font-family: Arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: none;
+}
+
+button {
+  background: #6c5ce7;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+pre {
+  white-space: pre-wrap;
+  margin-top: 15px;
+}
