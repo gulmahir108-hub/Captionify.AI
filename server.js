@@ -1,20 +1,15 @@
 const express = require("express");
-const path = require("path");
+const fetch = require("node-fetch");
 require("dotenv").config();
-
-const OpenAI = require("openai");
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.post("/generate-caption", async (req, res) => {
@@ -30,7 +25,7 @@ app.post("/generate-caption", async (req, res) => {
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
+          Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -42,14 +37,17 @@ app.post("/generate-caption", async (req, res) => {
     const data = await response.json();
 
     const caption =
-      Array.isArray(data) && data[0] && data[0].generated_text
-        ? data[0].generated_text
-        : `🔥 ${topic} is trending right now. Don't miss it!`;
+      data?.[0]?.generated_text ||
+      `🔥 ${topic} is trending right now!`;
 
     res.json({ caption });
 
-  } catch (error) {
-    console.error("HF ERROR:", error);
+  } catch (err) {
+    console.error("AI ERROR:", err);
     res.json({ caption: "❌ AI error occurred." });
   }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
